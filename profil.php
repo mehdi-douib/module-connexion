@@ -56,7 +56,7 @@ if(isset($_POST['submit']))
 }
 
 ?>
- $connexion = mysqli_connect('localhost','mehdi','4Ar01e1_j','mehdi-douib_moduleconnexion') ;
+
 <!DOCTYPE html>
 <html lang="en">
     <head>

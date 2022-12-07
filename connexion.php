@@ -1,34 +1,34 @@
 
-    <?php
+    <?php 
 session_start();
 
-if(isset($_POST['submit']))
-{
+if(isset($_POST['submit']))  
+{   
     if(!empty($_POST))
     {
-        $login = $_POST['login'];
-        $password= $_POST['password'];
-        $connexion= mysqli_connect('localhost','root','','moduleconnexion');
-       
-        //$connexion = mysqli_connect('localhost','mehdi','4Ar01e1_j','mehdi-douib_moduleconnexion') ;
-
-        //on va utiliser num_rows pour verifier que l'utilisateur existe
-        $resultat = mysqli_num_rows($requete);
-
-        //on fait un fetch row pour recup la ligne
-        $resultat2 = mysqli_fetch_row($requete);
-
-        //Decryptage du password
-        $verify = password_verify($password, $resultat2[1]);
-    }
-
+    $login = $_POST['login'];
+    $password= $_POST['password'];    
+    $bd = mysqli_connect("localhost","root","","moduleconnexion");
+    //$bd = mysqli_connect('localhost','mehdi','4Ar01e1_j','mehdi-douib_moduleconnexion');
+    $requete = mysqli_query($bd, "SELECT login, password FROM `utilisateurs` WHERE login='$login' ");
+    
+    //on va utiliser num_rows pour verifier que l'utilisateur existe
+    $resultat = mysqli_num_rows($requete);
+    
+    //on fait un fetch row pour recup la ligne
+    $resultat2 = mysqli_fetch_row($requete);
+    
+    //Decryptage du password 
+    $verify = password_verify($password, $resultat2[1]);
+    }  
+    
     //si verify existe
     if($verify==true)
     {
         if($resultat2[0]=='admin') //on verifie seulement le login puisque le password à deja été verifié
         {
             // session_start();
-            $_SESSION['admin'] = 'admin';
+            $_SESSION['admin'] = 'admin'; 
             header('location: admin.php');
             exit();
         }
@@ -40,7 +40,7 @@ if(isset($_POST['submit']))
             header('location: profil.php');
             exit();
         }
-
+        
     }
 }
 

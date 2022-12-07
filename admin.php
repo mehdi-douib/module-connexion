@@ -6,17 +6,18 @@ if(!isset($_SESSION['admin']))
     header('location: connexion.php');
     exit();
 }
-  
-else $connexion = mysqli_connect("localhost","root","","moduleconnexion");
-  //$connexion = mysqli_connect('localhost','mehdi','4Ar01e1_j','mehdi-douib_moduleconnexion') ;
+
+else $connexion = mysqli_connect('localhost', 'root', '', 'moduleconnexion');
+//$connexion = mysqli_connect('localhost','mehdi','4Ar01e1_j','mehdi-douib_moduleconnexion') ;
     $requete = 'SELECT * FROM utilisateurs';
     $query = mysqli_query($connexion, $requete);
 
     $champs = mysqli_fetch_fields($query);
-
+    
     $resultat = mysqli_fetch_assoc($query);
 ?>
- $connexion = mysqli_connect('localhost','mehdi','4Ar01e1_j','mehdi-douib_moduleconnexion') ;
+
+ 
 <!DOCTYPE html>
 <html lang="en">
     <head>
